@@ -1,6 +1,11 @@
 <template>
-  <NuxtRouteAnnouncer/>
-  <NuxtPage />
+  <div>
+    <NuxtLoadingIndicator :throttle="0" :duration="200" />
+    <NuxtRouteAnnouncer/>
+    <NuxtLayout>
+    <NuxtPage />
+    </NuxtLayout>
+  </div>
 </template>
 
 <style>

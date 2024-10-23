@@ -1,38 +1,3 @@
-<script setup>
-import { ref } from 'vue';
-
-const links = [{
-  label: 'Açıklama',
-  to: '/explanation',
-  target:"_blank"
-}]
-
-const startYear = 2008;
-const currentYear = new Date().getFullYear();
-const years = ref([]);
-const search = ref([]);
-const selectedYear = ref([]);
-
-for (let year = startYear; year <= currentYear; year++) {
-  years.value.push(year);
-}
-
-const incidents = ref([]);
-
-async function listIncidents(year) {
-  const response = await $fetch(`/api/list/incidents?year=${year}`);
-  incidents.value = response.data;
-  selectedYear.value = year;
-}
-
-async function searchIncident() {
-  const response = await $fetch(`/api/search/incidents?name=${search.value}`);
-  incidents.value = response.data;
-}
-
-await listIncidents(startYear);
-</script>
-
 <template>
   <UHorizontalNavigation :links="links">
     <template #default="{ link }">
@@ -78,9 +43,41 @@ await listIncidents(startYear);
       inline
       :to="`/incident/${incident.id}`"
       color="blue"
-      target="_blank"
     >
       {{ incident.name }}
     </UButton>
   </div>
 </template>
+<script setup>
+import { ref } from 'vue';
+
+const links = [{
+  label: 'Açıklama',
+  to: '/explanation',
+}]
+
+const startYear = 2008;
+const currentYear = new Date().getFullYear();
+const years = ref([]);
+const search = ref([]);
+const selectedYear = ref([]);
+
+for (let year = startYear; year <= currentYear; year++) {
+  years.value.push(year);
+}
+
+const incidents = ref([]);
+
+async function listIncidents(year) {
+  const response = await $fetch(`/api/list/incidents?year=${year}`);
+  incidents.value = response.data;
+  selectedYear.value = year;
+}
+
+async function searchIncident() {
+  const response = await $fetch(`/api/search/incidents?name=${search.value}`);
+  incidents.value = response.data;
+}
+
+await listIncidents(startYear);
+</script>

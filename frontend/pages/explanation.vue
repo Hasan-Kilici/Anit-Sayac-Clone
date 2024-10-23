@@ -1,6 +1,13 @@
-<script setup lang="ts">
-import { content } from '#tailwind-config';
+<template>
+    <div style="width: max(100% - 40px);">
+        <UTabs :items="items" orientation="vertical" :ui="{ 
+            wrapper: 'flex items-center gap-4 max-h-[100dvh] h-[100dvh] items-stretch py-4 px-4', 
+            list: { width: 'w-100', background: 'bg-transparent', }, 
+        }" />
+    </div>
+</template>
 
+<script setup lang="ts">
 const items = [{
   label: 'Giriş',
   content: `
@@ -26,12 +33,3 @@ anitsayac.com 2013 yılından bu yana ‘Kadın Cinayetlerini Durduracağız Pla
     content: "iletisim@anitsayac.com",
 }]
 </script>
-
-<template>
-    <div style="width: max(100% - 40px);">
-        <UTabs :items="items" orientation="vertical" :ui="{ 
-            wrapper: 'flex items-center gap-4 max-h-[100dvh] h-[100dvh] items-stretch py-4 px-4', 
-            list: { width: 'w-100', background: 'bg-transparent', }, 
-        }" />
-    </div>
-</template>
